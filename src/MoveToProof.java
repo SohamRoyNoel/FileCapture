@@ -4,9 +4,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.apache.commons.io.FileUtils;
+
 public class MoveToProof {
 
-	public static void moveToProof(String forTHEfolder, String forTHEfile) {
+	public static void moveToProof(String forTHEfolder) {
 		String proofDirectory = "D:/PROOF";
 		File theDirC = new File(proofDirectory);
 		if (!theDirC.exists()) {
@@ -18,16 +20,19 @@ public class MoveToProof {
 		}
 
 		try {
-			// copy the files
-			Path temp = Files.move(Paths.get("D:\\COPY1\\"+forTHEfolder), Paths.get("D:\\PROOF\\"+forTHEfolder));
-			if(temp != null) { 
-				System.out.println("File moved successfully"); 
+			// Copy1 TO Proof
+			String source = "D:/COPY1/"+forTHEfolder;
+			File srcDir = new File(source);
 
-			} 
-			else { 
-				System.out.println("Failed to move the file"); 
+			String destination = "D:/PROOF/"+forTHEfolder;
+			File destDir = new File(destination);
+
+			try {
+				FileUtils.copyDirectory(srcDir, destDir);
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

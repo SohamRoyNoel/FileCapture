@@ -10,8 +10,8 @@ public class MoveFolder {
 	public static void main(String[] args) {
 
 		try {
-			String forTHEfolder = "P12386";
-			String forTHEfile = "abc";
+			String forTHEfolder = "P12345";
+			String forTHEfile = "cde";
 
 			// location of the zip folder
 			String zipFilePath = "D:/Air/release.zip";
@@ -24,7 +24,7 @@ public class MoveFolder {
 				// call unzip method and copy all file to the DUMP Folder
 				UnzipFile.unzip(zipFilePath, destDir);
 				System.out.println("Unziped");
-				
+
 				// Copy all folder from DUMP to COPY(Backup)
 				File srcDir = new File(destDir);
 				// Destination
@@ -34,7 +34,7 @@ public class MoveFolder {
 			}
 			Thread.sleep(500);
 
-			
+
 			// get the single file from the folder
 			String copy1folderpath = "D:\\COPY1\\"+ forTHEfolder;
 
@@ -62,8 +62,14 @@ public class MoveFolder {
 						if(temp != null) { 
 							System.out.println("File renamed and moved successfully"); 
 							
+							/////////////////////////////////////////////// Application DST
+							/////////////////////////////////////////////// Download part
+							
 							// Move file copy to PROOF : Empties the copy folder
-							MoveToProof.moveToProof(forTHEfolder, forTHEfile);
+							MoveToProof.moveToProof(forTHEfolder);
+							
+							// Copy To Sayan Auitomation New
+							Copy1ToComparisonFolder.moveToSayanAutomationNew(forTHEfolder, forTHEfile);
 						} 
 						else { 
 							System.out.println("Failed to move the file"); 
